@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Dione Alfarisi - Portfolio</title>
+    <meta name="title" content="Dione Alfarisi - Portfolio">
+    <meta name="description" content="Selamat datang di portfolio Dione Alfarisi, seorang freelancer dengan hobi coding dan keahlian di bidang AI, enkripsi, machine learning, dan analisis data.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dionealfarisi.github.io">
+    <meta property="og:title" content="Dione Alfarisi - Portfolio">
+    <meta property="og:description" content="Selamat datang di portfolio Dione Alfarisi, seorang freelancer dengan hobi coding dan keahlian di bidang AI, enkripsi, machine learning, dan analisis data.">
+    <meta property="og:image" content="https://dionealfarisi.github.io/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dionealfarisi.github.io">
+    <meta property="twitter:title" content="Dione Alfarisi - Portfolio">
+    <meta property="twitter:description" content="Selamat datang di portfolio Dione Alfarisi, seorang freelancer dengan hobi coding dan keahlian di bidang AI, enkripsi, machine learning, dan analisis data.">
+    <meta property="twitter:image" content="https://dionealfarisi.github.io/assets/twitter-image.jpg">
+
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dione Alfarisi">
+    <meta name="keywords" content="Dione Alfarisi, Portfolio, AI, Enkripsi, Machine Learning, Data Analysis, Freelancer, Coding, Projects">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://dionealfarisi.github.io/assets/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s;
+        }
+        .navbar a {
+            color: white;
+            transition: background 0.3s, color 0.3s;
+        }
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+   <script>
+        const namespace = 'dionealfarisi.github.io';
+        const counterName = 'visitor_count';
+        const maxRetries = 3;
+        const visitKey = 'lastVisit';
+        const visitInterval = 60000;
+
+        async function fetchWithRetry(url, options, retries) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return await response.json();
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                }
+            }
+        }
+
+        function canVisit() {
+            const lastVisit = localStorage.getItem(visitKey);
+            const now = Date.now();
+            if (lastVisit && (now - lastVisit) < visitInterval) {
+                return false;
+            }
+            localStorage.setItem(visitKey, now);
+            return true;
+        }
+
+        async function incrementVisitorCount() {
+            try {
+                const url = `https://api.counterapi.dev/v1/${namespace}/${counterName}/up`;
+                const data = await fetchWithRetry(url, {}, maxRetries);
+                return data.count;
+            } catch (error) {
+                console.error('Error incrementing visitor count:', error);
+                return null;
+            }
+        }
+
+        async function getVisitorCount() {
+            try {
+                const url = `https://api.counterapi.dev/v1/${namespace}/${counterName}`;
+                const data = await fetchWithRetry(url, {}, maxRetries);
+                return data.count;
+            } catch (error) {
+                console.error('Error fetching visitor count:', error);
+                return null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (canVisit()) {
+                const updatedCount = await incrementVisitorCount();
+                if (updatedCount !== null) {
+                    document.getElementById('visitorCount').textContent = updatedCount;
+                } else {
+                    const currentCount = await getVisitorCount();
+                    document.getElementById('visitorCount').textContent = currentCount !== null ? currentCount : 'Error loading count';
+                }
+            } else {
+                const currentCount = await getVisitorCount();
+                document.getElementById('visitorCount').textContent = currentCount !== null ? currentCount : 'Error loading count';
+            }
+        });
+    </script>
+</head>
+<body class="bg-black text-gray-300">
+    <!-- Header Section -->
+    <header class="gradient-bg text-white p-6 fadeInUp">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Dione Alfarisi</h1>
+            <nav class="navbar">
+                <a href="#about" class="ml-4 flex items-center"><i class="fas fa-user mr-2"></i>About</a>
+                <a href="#skills" class="ml-4 flex items-center"><i class="fas fa-code mr-2"></i>Skills</a>
+                <a href="#projects" class="ml-4 flex items-center"><i class="fas fa-briefcase mr-2"></i>Projects</a>
+                <a href="#contact" class="ml-4 flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 fadeInUp">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-500">About Me</h2>
+            <div class="flex flex-col items-center">
+                <img src="https://avatars.githubusercontent.com/u/133622028?v=4" alt="Profile Picture" class="rounded-full w-40 h-40 mb-4">
+                <p class="text-lg max-w-2xl">Hello, I'm <b>Dione Alfarisi</b>, a passionate Freelancer with a love for coding. I specialize in Artificial Intelligence, Encryption, Machine Learning, and Data Analysis. I am always eager to learn new technologies and apply them to solve real-world problems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-500 fadeInUp">Skills</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Artificial Intelligence</h3>
+                        <p>Building intelligent systems that can learn and make decisions.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Encryption</h3>
+                        <p>Securing data through advanced encryption techniques.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Machine Learning</h3>
+                        <p>Creating models to analyze data and make predictions.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Data Analysis</h3>
+                        <p>Extracting insights from complex datasets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 fadeInUp">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-500">Projects</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Encrypt File Python</h3>
+                        <a href="https://github.com/dionealfarisi/encrypt-file-python" target="_blank" class="text-blue-400 hover:underline">A Python application for encrypting and decrypting files using advanced encryption techniques. Ideal for protecting sensitive data and ensuring information privacy.</a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">WebPage Finder</h3>
+                        <a href="https://github.com/dionealfarisi/WebPageFinder" target="_blank" class="text-blue-400 hover:underline">A web page discovery tool that enables users to quickly locate and access specific pages within a website. Useful for site analysis and information gathering.</a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Loader</h3>
+                        <a href="https://github.com/dionealfarisi/loader" target="_blank" class="text-blue-400 hover:underline">A script or application designed to efficiently load and manage various resources or modules. Enhances performance and resource management for applications.</a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 fadeInUp">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg card-hover">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-400">Kirim Pesan WhatsApp</h3>
+                        <a href="https://github.com/dionealfarisi/kirim-pesan-whatsapp" target="_blank" class="text-blue-400 hover:underline">A program for sending automated messages via WhatsApp using its API. Facilitates communication and automates message delivery on a large scale.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 fadeInUp">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4 text-blue-500">Contact Me</h2>
+            <p class="text-lg mb-4">Feel free to reach out to me for any project or collaboration.</p>
+            <a href="mailto:ardionefarisi1322@gmail.com" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Email Me</a>
+            <div class="mt-4">
+                <a href="https://www.linkedin.com/in/dionealfarisi" target="_blank" class="text-blue-400 hover:underline mx-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/dionealfarisi" target="_blank" class="text-blue-400 hover:underline mx-2"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://facebook.com/dionealfarisi" target="_blank" class="text-blue-400 hover:underline mx-2"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://instagram.com/dionealfarisii" target="_blank" class="text-blue-400 hover:underline mx-2"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </section>
+<!-- Visited Section -->
+<div class="bg-blue p-2 rounded shadow-md text-left">
+        <label for="">Visited: </label><span id="visitorCount" class="text-l font-bold text-blue-500">0</span>
+    </div>
+    <!-- Footer Section -->
+<footer class="bg-gray-900 text-white py-6 fadeInUp">
+    <div class="container mx-auto text-center">
+        <p>&copy; <span id="current-year"></span> Dione Alfarisi. All Rights Reserved.</p>
+    </div>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</footer>
+</body>
+</html>
