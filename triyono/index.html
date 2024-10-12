@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peminjaman Uang</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .counter {
+            font-size: 28px;
+            font-weight: bold;
+            color: red;
+            margin: 20px;
+        }
+        .person-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<h1>Pinjaman Resmi</h1>
+
+    <img src="https://avatars.githubusercontent.com/u/180619896?v=4" alt="Foto Teman" class="person-photo">
+    <div class="counter" id="counter">Rp. 500.000</div>
+
+    <script>
+        const initialAmount = 500000;
+        const incrementPerMinute = 10;
+        const startTime = new Date('2024-10-12T12:02:00Z');
+
+        function calculateCurrentAmount() {
+            const now = new Date();
+            const diffMs = now - startTime;
+            const diffMinutes = Math.floor(diffMs / 60000);
+            const currentAmount = initialAmount + (diffMinutes * incrementPerMinute);
+            return currentAmount;
+        }
+
+        function updateCounter() {
+            const amount = calculateCurrentAmount();
+            document.getElementById('counter').textContent = 'Rp. ' + amount.toLocaleString('id-ID');
+        }
+
+        setInterval(updateCounter, 1000);
+    </script>
+
+</body>
+                                                  </html>
